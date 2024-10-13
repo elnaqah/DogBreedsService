@@ -4,10 +4,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "exampleServer",
+    name: "DogBreedsService",
     platforms: [.macOS(.v14)],
     products: [
-        .executable(name: "Server", targets: ["exampleServer"])
+        .executable(name: "DogBreedsService", targets: ["DogBreedsService"])
     ],
     dependencies: [
         .package(url: "https://github.com/hummingbird-project/hummingbird.git", exact: "2.1.0"),
@@ -15,11 +15,18 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "exampleServer",
+            name: "DogBreedsService",
             dependencies: [
                 .product(name: "Hummingbird", package: "hummingbird"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]
         ),
+        .testTarget(
+            name: "DogBreedsServiceTests",
+            dependencies: [
+                "DogBreedsService",
+                .product(name: "Hummingbird", package: "hummingbird")
+            ]
+        )
     ]
 )
