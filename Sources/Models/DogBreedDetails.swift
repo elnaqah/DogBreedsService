@@ -1,4 +1,4 @@
-struct DogBreedDetails: Codable {
+struct DogBreedDetails: DogProtocol {
     let id: Int
     let name: String
     let size: String
