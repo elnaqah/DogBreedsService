@@ -1,25 +1,25 @@
 import Hummingbird
 
-struct BreadsController {
+struct BreedsController {
     
-    func add(to group: RouterGroup<BreadContext>) {
+    func add(to group: RouterGroup<BreedContext>) {
         group
-            .get("/breads", use: breads)
-            .get("/breads/:breedID", use: bread)
+            .get("/breeds", use: breeds)
+            .get("/breeds/:breedID", use: breed)
     }
     
     @Sendable
-    func breads(
+    func breeds(
         _ request: Request,
-        context: BreadContext
+        context: BreedContext
     ) async throws -> [DogBreed] {
-        breeds
+        TestData.breeds
     }
     
     @Sendable
-    func bread(
+    func breed(
         _ request: Request,
-        context: BreadContext
+        context: BreedContext
     ) async throws -> DogBreedDetails {
         let pathComponents = request.uri.path.split(separator: "/")
         
@@ -28,7 +28,7 @@ struct BreadsController {
             throw HTTPError(.badRequest)
         }
         
-        guard let breed = breedDetails.first(where: { $0.id == breedID }) else {
+        guard let breed = TestData.breedDetails.first(where: { $0.id == breedID }) else {
             throw HTTPError(.notFound)
         }
         

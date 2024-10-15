@@ -16,9 +16,9 @@ struct Server: AsyncParsableCommand {
     }
     
     private func setupApplication(address: BindAddress) -> some ApplicationProtocol {
-        let router = Router(context: BreadContext.self)
+        let router = Router(context: BreedContext.self)
         router.middlewares.add(LogRequestsMiddleware(.info, includeHeaders: .all()))
-        let controller = BreadsController()
+        let controller = BreedsController()
         controller.add(to: router.group())
         
         return Application(

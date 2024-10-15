@@ -1,6 +1,6 @@
 import Hummingbird
 
-struct BreadContext: RequestContext {
+struct BreedContext: RequestContext {
     var coreContext: CoreRequestContextStorage
 
     init(source: ApplicationRequestContextSource) {
